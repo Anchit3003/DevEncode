@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import FileUploader from "./FileUploader";
 import yaml from "js-yaml";
 
 function JsonConverter() {
@@ -140,6 +141,8 @@ function JsonConverter() {
       <h1 className="text-2xl font-bold mb-6 text-center">
         🛠 devEncode Converter
       </h1>
+
+      {/* <FileUploader/> */}
 
       {/* Input Section */}
       <div className="flex flex-col md:flex-row gap-4 mb-4">
