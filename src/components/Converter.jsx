@@ -3,6 +3,14 @@ import FileUploader from "./FileUploader";
 import yaml from "js-yaml";
 import TypeButtons from "./TypeButtons";
 import TextAreaBox from "./TextAreaBox";
+import {
+  jsonToString,
+  stringToJson,
+  yamlToJson,
+  jsonToYaml,
+  yamlToString,
+  stringToYaml,
+} from "../utils/converterUtils";
 function Converter() {
   const [jsonInput, setJsonInput] = useState("");
   const [convertedOutput, setconvertedOutput] = useState("");
@@ -12,7 +20,7 @@ function Converter() {
 
   const inputRef = useRef(null);
 
-  const buttonOptions =["json","string","yaml"]
+  const buttonOptions = ["json", "string", "yaml"];
 
   const handleInputTypeChange = (type) => {
     setInputType(type);
@@ -37,95 +45,23 @@ function Converter() {
   };
 
   useEffect(() => {
+    let result;
     if (inputType === "json" && outputType === "string") {
-      console.log("Converting JSON to String");
-      try {
-        const obj = JSON.parse(jsonInput);
-        const str = JSON.stringify(obj, null, 4);
-        setconvertedOutput(JSON.stringify(str));
-      } catch (e) {
-        if (jsonInput === "") {
-          setconvertedOutput("output will be here...");
-        } else {
-          setconvertedOutput("Invalid JSON input");
-        }
-      }
+      result = jsonToString(jsonInput);
     } else if (inputType === "string" && outputType === "json") {
-      try {
-        if(jsonInput !==""){
-          const rawString = jsonInput;
-        const cleaned = rawString.slice(1, -1);
-        const cleanedString = cleaned.replace(/\\n/g, "").replace(/\\"/g, '"');
-        const parsedData = JSON.parse(cleanedString);
-        setconvertedOutput(JSON.stringify(parsedData, null, 2));
-        }
-        
-      } catch (e) {
-        console.log(e);
-        setconvertedOutput("Invalid String input");
-      }
+      result = stringToJson(jsonInput);
     } else if (inputType === "json" && outputType === "yaml") {
-      try {
-        const jsonData = JSON.parse(jsonInput);
-        const yamlData = yaml.dump(jsonData);
-        console.log(yamlData);
-        setconvertedOutput(yamlData);
-      } catch (e) {
-        if (jsonInput === "") {
-          setconvertedOutput("output will be here...");
-        } else {
-          setconvertedOutput("Invalid JSON input");
-        }
-      }
+      result = jsonToYaml(jsonInput);
     } else if (inputType === "yaml" && outputType === "json") {
-      try {
-        const jsonData = yaml.load(jsonInput);
-        const prettyJson = JSON.stringify(jsonData, null, 2);
-        setconvertedOutput(prettyJson);
-      } catch (e) {
-        if (jsonInput === "") {
-          setconvertedOutput("output will be here...");
-        } else {
-          setconvertedOutput("Invalid YAML input");
-        }
-      }
+      result = yamlToJson(jsonInput);
     } else if (inputType === "yaml" && outputType === "string") {
-      try {
-        if (jsonInput !== "") {
-          const string = JSON.stringify(jsonInput);
-          setconvertedOutput(string);
-        }
-      } catch (e) {
-        if (jsonInput === "") {
-          setconvertedOutput("output will be here...");
-        } else {
-          setconvertedOutput("Invalid YAML input");
-        }
-      }
+      result = yamlToString(jsonInput);
     } else if (inputType === "string" && outputType === "yaml") {
-
-      console.log("Converting String to YAML");
-      try {
-        if (jsonInput.startsWith('"') && jsonInput.endsWith('"')) {
-          
-          try {
-            input = JSON.parse(jsonInput)
-            setJsonInput(input);
-          }catch (e) {
-            setconvertedOutput("Invalid String input");
-          }
-        }
-        const decodedYaml = jsonInput.replace(/\\n/g, "\n");
-        setconvertedOutput(decodedYaml);
-      } catch (e) {
-        if (jsonInput === "") {
-          setconvertedOutput("output will be here...");
-        } else {
-          setconvertedOutput("Invalid YAML input");
-        }
-      }
+      result = stringToYaml(jsonInput);
     }
+    setconvertedOutput(result);
   }, [jsonInput, inputType, outputType]);
+
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.style.height = "auto";
@@ -145,22 +81,40 @@ function Converter() {
         🛠 devEncode Converter
       </h1>
 
-      {/* <FileUploader/> */}
+      <FileUploader onFileRead={setJsonInput} inputType={inputType} />
 
       {/* Input Section */}
       <div className="flex flex-col md:flex-row gap-4 mb-4">
         <div className="flex-1 flex flex-col">
           {/* Input type buttons styled as tabs above the input box */}
-          <TypeButtons type={inputType} options={buttonOptions} onChange={handleInputTypeChange}/>
-          <TextAreaBox value={jsonInput} onChange={(e) => setJsonInput(e.target.value)} placeholder={`Enter ${inputType.toUpperCase()} here...`} readOnly={false} ref={inputRef} />
+          <TypeButtons
+            type={inputType}
+            options={buttonOptions}
+            onChange={handleInputTypeChange}
+          />
+          <TextAreaBox
+            value={jsonInput}
+            onChange={(e) => setJsonInput(e.target.value)}
+            placeholder={`Enter ${inputType.toUpperCase()} here...`}
+            readOnly={false}
+            ref={inputRef}
+          />
         </div>
 
         {/* Output Section */}
         <div className="flex-1 flex flex-col">
           {/* Input type buttons styled as tabs above the input box */}
-         <TypeButtons type={outputType} options={buttonOptions} onChange={handleOutputTypeChange}/>
-          <TextAreaBox value={convertedOutput} placeholder={"Output here..."} readOnly={true} ref={outputRef}/>
-          
+          <TypeButtons
+            type={outputType}
+            options={buttonOptions}
+            onChange={handleOutputTypeChange}
+          />
+          <TextAreaBox
+            value={convertedOutput}
+            placeholder={"Output here..."}
+            readOnly={true}
+            ref={outputRef}
+          />
         </div>
       </div>
 
