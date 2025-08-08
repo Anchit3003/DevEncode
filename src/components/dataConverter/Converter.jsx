@@ -10,7 +10,7 @@ import {
   jsonToYaml,
   yamlToString,
   stringToYaml,
-} from "../utils/converterUtils";
+} from "../../utils/converterUtils";
 function Converter() {
   const [jsonInput, setJsonInput] = useState("");
   const [convertedOutput, setconvertedOutput] = useState("");
