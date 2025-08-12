@@ -3,6 +3,7 @@ import FileUploader from "./FileUploader";
 import yaml from "js-yaml";
 import TypeButtons from "./TypeButtons";
 import TextAreaBox from "./TextAreaBox";
+import FileDownloader from "./FileDownloader";
 import {
   jsonToString,
   stringToJson,
@@ -80,8 +81,11 @@ function Converter() {
       <h1 className="text-2xl font-bold mb-6 text-center">
         🛠 devEncode Converter
       </h1>
-
-      <FileUploader onFileRead={setJsonInput} inputType={inputType} />
+  <div  className="flex justify-between items-center ">
+    <FileUploader onFileRead={setJsonInput} inputType={inputType} />
+         <FileDownloader value={convertedOutput} type={outputType} />
+  </div>
+      
 
       {/* Input Section */}
       <div className="flex flex-col md:flex-row gap-4 mb-4">
@@ -102,6 +106,9 @@ function Converter() {
         </div>
 
         {/* Output Section */}
+
+ 
+
         <div className="flex-1 flex flex-col">
           {/* Input type buttons styled as tabs above the input box */}
           <TypeButtons
@@ -109,6 +116,7 @@ function Converter() {
             options={buttonOptions}
             onChange={handleOutputTypeChange}
           />
+          
           <TextAreaBox
             value={convertedOutput}
             placeholder={"Output here..."}
