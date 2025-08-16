@@ -76,21 +76,26 @@ function Converter() {
     }
   }, [convertedOutput]);
 
-  return (
+return (
+  <div className="min-h-screen w-full bg-gray-50 text-black dark:bg-gray-900 dark:text-white">
     <div className="max-w-6xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6 text-center">
-        🛠 devEncode Converter
-      </h1>
-  <div  className="flex justify-between items-center ">
-    <FileUploader onFileRead={setJsonInput} inputType={inputType} />
-         <FileDownloader value={convertedOutput} type={outputType} />
-  </div>
       
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-bold">🛠 Text Converter</h1>
+      </div>
 
-      {/* Input Section */}
-      <div className="flex flex-col md:flex-row gap-4 mb-4">
-        <div className="flex-1 flex flex-col">
-          {/* Input type buttons styled as tabs above the input box */}
+      {/* File Upload & Download Section */}
+      <div className="flex justify-between items-center mb-6">
+        <FileUploader onFileRead={setJsonInput} inputType={inputType} />
+        <FileDownloader value={convertedOutput} type={outputType} />
+      </div>
+
+      {/* Input & Output Section */}
+      <div className="flex flex-col md:flex-row gap-6 mb-6">
+        
+        {/* Input Section */}
+        <div className="flex-1 flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow p-4">
           <TypeButtons
             type={inputType}
             options={buttonOptions}
@@ -102,36 +107,31 @@ function Converter() {
             placeholder={`Enter ${inputType.toUpperCase()} here...`}
             readOnly={false}
             ref={inputRef}
+            className="bg-gray-100 dark:bg-gray-700 text-black dark:text-white rounded p-2 mt-2"
           />
         </div>
 
         {/* Output Section */}
-
- 
-
-        <div className="flex-1 flex flex-col">
-          {/* Input type buttons styled as tabs above the input box */}
+        <div className="flex-1 flex flex-col bg-white  dark:bg-gray-800 rounded-lg shadow p-4">
           <TypeButtons
             type={outputType}
             options={buttonOptions}
             onChange={handleOutputTypeChange}
           />
-          
           <TextAreaBox
             value={convertedOutput}
-            placeholder={"Output here..."}
+            placeholder="Output here..."
             readOnly={true}
             ref={outputRef}
+            className="bg-gray-100  dark:bg-gray-700 text-black dark:text-white rounded p-2 mt-2"
           />
         </div>
       </div>
 
-      <div>
-        {/* <button onClick={handleConverToString}>Convert to String</button> */}
-        {/* <button onClick={handleConvertToJson}>Convert to JSON</button> */}
-      </div>
     </div>
-  );
+  </div>
+);
+
 }
 
 export default Converter;
