@@ -7,7 +7,7 @@ function TypeButtons({ type, options, onChange }) {
       {options.map((option, idx) => (
         <button
           key={option}
-          className={`flex-1 px-4 py-2 border-t border-l border-b-0 ${idx === options.length - 1 ? 'border-r' : ''} ${
+          className={`flex-1 px-4 py-2 border-t border-l  border-b-0 ${idx === options.length - 1 ? 'border-r' : ''} ${
             idx === 0 ? 'rounded-tl' : 'rounded-tl-none'
           } ${
             idx === options.length - 1 ? 'rounded-tr' : 'rounded-tr-none'

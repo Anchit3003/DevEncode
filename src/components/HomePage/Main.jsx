@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Nav from "./Nav";
 
 const tools = [
   {
@@ -17,15 +16,21 @@ const tools = [
     path: "/json/validator",
     description: "validate your JSON data easily.",
   },
+  {
+    name: "Diff Checker",
+    path: "/diff-checker",
+    description: "Compare and find differences between text files.",
+  }
   // Add more tools here as you build them
 ];
 
 const Main = () => {
   return (
-    <>
+    <div className="bg-gray-50 text-black dark:bg-gray-900 dark:text-white min-h-screen">
+    <div className="min-h-screen flex flex-col items-center justify-center">
 
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
-        <h1 className="text-4xl font-bold mb-6 text-gray-800">
+       
+        <h1 className="text-4xl font-bold mb-6">
           DevEncode Tools
         </h1>
         <p className="mb-8 text-lg text-gray-600">
@@ -36,7 +41,7 @@ const Main = () => {
             <Link
               key={tool.name}
               to={tool.path}
-              className="block px-2 py-1 bg-white border border-black rounded-lg shadow hover:bg-gray-100 transition"
+              className="dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 block px-2 py-1 bg-white border border-black rounded-lg shadow hover:bg-gray-100 transition"
             >
               <div className="text-2xl font-semibold mb-2">{tool.name}</div>
               <div className="text-gray-500">{tool.description}</div>
@@ -44,7 +49,7 @@ const Main = () => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
