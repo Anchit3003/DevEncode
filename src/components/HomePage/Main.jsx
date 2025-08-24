@@ -1,40 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-const tools = [
+
+const Main = () => {  
+  const { t } = useTranslation();
+  const tools = [
   {
-    name: "Converter",
+    name: t('home.tool1_title'),
     path: "/converter",
-    description: "Convert JSON, YAML, and String formats.",
+    description: t('home.tool1_description'),
   },{
-    name: "Base64 Encoder/Decoder",
+    name: t('home.tool2_title'),
     path: "/base64",
-    description: "Get your images to Base64 format and vice versa.",
+    description: t('home.tool2_description'),
   },
   {
-    name: "JSON Validator",
+    name: t('home.tool3_title'),
     path: "/json/validator",
-    description: "validate your JSON data easily.",
+    description: t('home.tool3_description'),
   },
   {
-    name: "Diff Checker",
+    name: t('home.tool4_title'),
     path: "/diff-checker",
-    description: "Compare and find differences between text files.",
+    description: t('home.tool4_description'),
   }
   // Add more tools here as you build them
 ];
-
-const Main = () => {
   return (
     <div className="bg-gray-50 text-black dark:bg-gray-900 dark:text-white min-h-screen">
     <div className="min-h-screen flex flex-col items-center justify-center">
 
        
         <h1 className="text-4xl font-bold mb-6">
-          DevEncode Tools
+         {t('home.title')}
         </h1>
         <p className="mb-8 text-lg text-gray-600">
-          Choose a tool to get started:
+          {t('home.description')}
         </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {tools.map((tool) => (

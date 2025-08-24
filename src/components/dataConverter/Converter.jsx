@@ -4,6 +4,7 @@ import yaml from "js-yaml";
 import TypeButtons from "./TypeButtons";
 import TextAreaBox from "./TextAreaBox";
 import FileDownloader from "./FileDownloader";
+import { useTranslation } from "react-i18next";
 import {
   jsonToString,
   stringToJson,
@@ -13,6 +14,7 @@ import {
   stringToYaml,
 } from "../../utils/converterUtils";
 function Converter() {
+  const { t } = useTranslation();
   const [jsonInput, setJsonInput] = useState("");
   const [convertedOutput, setconvertedOutput] = useState("");
   const [inputType, setInputType] = useState("json");
@@ -82,7 +84,7 @@ return (
       
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">🛠 Text Converter</h1>
+        <h1 className="text-2xl font-bold">{t("converter.title")}</h1>
       </div>
 
       {/* File Upload & Download Section */}

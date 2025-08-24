@@ -2,6 +2,7 @@ import React from 'react';
 import logo  from '../../assets/logo.svg';
 import { Link } from 'react-router-dom';
 import ToggleTheme from '../ToggleTheme/ToggleTheme';
+import ChangeLanguage from './ChangeLanguage';
 const Nav = () => {
   return (
   <nav className="w-full flex items-center justify-between px-6 py-3 bg-black shadow">
@@ -14,8 +15,10 @@ const Nav = () => {
     </div>
 
     {/* Right Section (Toggle Button) */}
-    <div>
+
+    <div className="flex items-center gap-4">
       <ToggleTheme />
+       <ChangeLanguage />
     </div>
   </nav>
 );
