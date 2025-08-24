@@ -1,0 +1,29 @@
+{
+    "home": {
+        "title": "DevEncode Werkzeuge",
+        "description":"Wählen Sie ein Werkzeug, um zu beginnen:",
+        "tool1_title":"Konverter",
+        "tool1_description":"Konvertieren Sie JSON-, YAML- und String-Formate",
+        "tool2_title":"Base64 Encoder/Decoder",
+        "tool2_description":"Holen Sie sich Ihre Bilder im Base64-Format und umgekehrt",
+        "tool3_title":"JSON-Validator",
+        "tool3_description":"Validieren Sie Ihre JSON-Daten ganz einfach",
+        "tool4_title":"Diff Checker",
+        "tool4_description":"Vergleichen und finden Sie Unterschiede zwischen zwei Texten"
+    },
+    "converter":{
+        "title": "Textkonverter",
+        "description": "Konvertieren zwischen JSON-, YAML- und String-Formaten"
+    },
+    "base64":{
+        "title": "Base64-Konverter",
+        "description": "Konvertieren zwischen Bildern und Base64 nahtlos.",
+        "button1":"Wechseln zu Base64 -> Bild",
+        "button2":"Wechseln zu Bild -> Base64",
+        "input1":"Bild hochladen",
+        "output1":"Base64-Ausgabe",
+        "copyButton":"Kopieren",
+        "drag_drop":"Ziehen Sie Ihr Bild hierher",
+        "click_upload": "oder klicken Sie, um hochzuladen"
+    }
+}

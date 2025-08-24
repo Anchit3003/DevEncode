@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
-
+import { useTranslation } from "react-i18next";
 const ImageUpload = ({onFileSelect}) => {
     const inputRef = useRef();
+    const { t } = useTranslation();
 
     const handleDrop = (e) =>{
         e.preventDefault();
@@ -26,9 +27,9 @@ const ImageUpload = ({onFileSelect}) => {
       onClick={handleClick}>
         <input type="file" accept="image/*" className="hidden" onChange={handleChange} ref={inputRef}/>
         <span className="text-center">
-          Drag & drop your image here
+          {t("base64.drag_drop")}
           <br />
-          or click to upload
+          {t("base64.click_upload")}
         </span>
       </div>
     </div>
