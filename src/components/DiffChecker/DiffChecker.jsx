@@ -12,6 +12,12 @@ const DiffCheckerLayout = () => {
     setModifiedState(e.target.value);
   };
 
+  const handleClear = (e) => {
+    console.log("Cleared")
+    setInputState("")
+    setModifiedState("")
+  }
+
   const handleCompare = () => {
     const lines1 = inputState.split("\n");
     const lines2 = modifiedState.split("\n");
@@ -76,7 +82,7 @@ const DiffCheckerLayout = () => {
             <button className="px-4 py-2 rounded-lg bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-100 shadow hover:bg-gray-300 dark:hover:bg-gray-700 transition">
               Swap
             </button>
-            <button className="px-4 py-2 rounded-lg bg-rose-600 text-white font-medium shadow hover:bg-rose-700 transition">
+            <button className="px-4 py-2 rounded-lg bg-rose-600 text-white font-medium shadow hover:bg-rose-700 transition" onClick={handleClear}>
               Clear
             </button>
           </div>
@@ -117,6 +123,7 @@ const DiffCheckerLayout = () => {
             </div>
             <textarea
               onChange={handleInputChange}
+              value={inputState}
               placeholder="Paste or type the original text here…"
               className="w-full min-h-[260px] p-4 font-mono text-sm bg-transparent outline-none resize-y text-gray-900 dark:text-gray-100"
             />
@@ -137,6 +144,7 @@ const DiffCheckerLayout = () => {
             </div>
             <textarea
               onChange={handleOutputChange}
+              value ={modifiedState}
               placeholder="Paste or type the modified text here…"
               className="w-full min-h-[260px] p-4 font-mono text-sm bg-transparent outline-none resize-y text-gray-900 dark:text-gray-100"
             />
@@ -152,10 +160,6 @@ const DiffCheckerLayout = () => {
           <span className="inline-flex items-center gap-2">
             <span className="h-3 w-3 rounded bg-rose-500/30 ring-1 ring-rose-500"></span>
             Removed
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <span className="h-3 w-3 rounded bg-amber-500/30 ring-1 ring-amber-500"></span>
-            Changed
           </span>
           <span className="inline-flex items-center gap-2">
             <span className="h-3 w-3 rounded bg-gray-400/30 ring-1 ring-gray-400"></span>
